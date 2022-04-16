@@ -1,33 +1,34 @@
-
+// const { DataTypes } = require("sequelize/types");
+// const { sequelize } = require(".");
 
 //structuring the model
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('user', {
-        firstName: {
+    const List = sequelize.define('list', {
+        list: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastName: {
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
+        category: {
             type: DataTypes.STRING,
             allowNull: false
         },
 
-        email: {
+        status: {
             type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        userName: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
+            default: "Pending"
         }
 
     }, {timestamps: true}, )
 
-    return User
+    return List
 }
