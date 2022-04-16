@@ -65,9 +65,15 @@ db.lists.belongsTo(db.users, {
     foreignKey: "users_id"
 })
 
+db.lists.hasOne(db.budgets, {
+    as: "budget",
+    foreignKey: "listId"
+})
+
 db.budgets.belongsTo(db.lists, {
     as: "list",
-    foreignKey: "list_id"
+    foreignKey: "listId"
 })
+
 
 module.exports = db

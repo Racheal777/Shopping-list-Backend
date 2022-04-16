@@ -2,12 +2,23 @@
 # Content-Type: application/json
 
 # {
-#     "list": "haircut",
-#     "price": 50,
+#     "list": "Rice",
+#     "price": 85.00,
 #     "quantity": 1,
-#     "category": "general"
+#     "category": "groceries"
+    
 # }
 
-# Get http://localhost:7070/api/list/getlist
+ Get http://localhost:7070/api/list/getbudget/3
 
-DELETE   http://localhost:7070/api/list/deletelist/1
+# DELETE   http://localhost:7070/api/list/deletelist/1
+
+# PUT http://localhost:7070/api/list/updatebudget/1
+# Content-Type: application/json
+
+# {
+#     "amount": 3000.00,
+#     "listId": 1
+    
+    
+# }

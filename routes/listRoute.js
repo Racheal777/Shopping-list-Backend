@@ -21,5 +21,13 @@ router.delete('/deletelist/:id', listController.deleteList)
 //get list by category
 router.get('/category/:id', listController.getListCategory)
 
+//budget route
+
+router.post('/addbudget', listController.saveBudget)
+
+router.put('/updatebudget/:id', listController.updateBudget)
+
+router.get('/getbudget/:id', listController.getBudget)
+
 
 module.exports = router
