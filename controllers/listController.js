@@ -15,7 +15,7 @@ const saveList = async ( req, res ) => {
         price: req.body.price,
         quantity: req.body.quantity,
         category: req.body.category,
-        status: req.body.status
+        status: req.body.status ? req.body.status : "Pending"
     }
     const newList = await List.create(data)
     res.status(201).json({newList})

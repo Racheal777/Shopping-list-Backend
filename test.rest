@@ -2,8 +2,8 @@ POST http://localhost:7070/api/list/savelist
 Content-Type: application/json
 
 {
-    "list": "dress",
-    "price": 300,
-    "quantity": 2,
-    "category": "general"
+    "list": "cornflakes",
+    "price": 35,
+    "quantity": 1,
+    "category": "groceries"
 }
