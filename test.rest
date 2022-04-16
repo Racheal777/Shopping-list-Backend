@@ -1,9 +1,13 @@
-POST http://localhost:7070/api/list/savelist
-Content-Type: application/json
+# POST http://localhost:7070/api/list/savelist
+# Content-Type: application/json
 
-{
-    "list": "cornflakes",
-    "price": 35,
-    "quantity": 1,
-    "category": "groceries"
-}
+# {
+#     "list": "haircut",
+#     "price": 50,
+#     "quantity": 1,
+#     "category": "general"
+# }
+
+# Get http://localhost:7070/api/list/getlist
+
+DELETE   http://localhost:7070/api/list/deletelist/1

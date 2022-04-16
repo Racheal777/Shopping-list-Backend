@@ -52,8 +52,8 @@ db.sequelize.sync({force: false}).then(() => {
 })
 
 //establishing relationships
-//We use hasMany() to help one Products have many Reviews, 
-//and belongsTo() to indicate that one Review only belongs to one Product.
+//We use hasMany() to help one User have many lists, 
+//and belongsTo() to indicate that one list only belongs to one user.
 
 db.users.hasMany(db.lists,{
     as: "list",
@@ -62,11 +62,11 @@ db.users.hasMany(db.lists,{
 
 db.lists.belongsTo(db.users, {
     as:  "user",
-    foreignKey: "user_id"
+    foreignKey: "users_id"
 })
 
 db.budgets.belongsTo(db.lists, {
-    as: "user",
+    as: "list",
     foreignKey: "list_id"
 })
 
