@@ -15,7 +15,6 @@ try {
         list: req.body.list,
         price: req.body.price,
         quantity: req.body.quantity,
-        category: req.body.category,
         status: req.body.status ? req.body.status : "Pending"
     }
     const list = await List.create( data )
