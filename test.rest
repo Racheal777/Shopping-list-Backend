@@ -2,22 +2,21 @@
 # Content-Type: application/json
 
 # {
-#     "list": "Rice",
-#     "price": 85.00,
-#     "quantity": 1,
-#     "category": "groceries"
+#     "list": "Frytol",
+#     "price": 99.00,
+#     "quantity": 1
     
 # }
 
- Get http://localhost:7070/api/list/getbudget/3
+ Get http://localhost:7070/api/list/getbudget/1
 
 # DELETE   http://localhost:7070/api/list/deletelist/1
 
-# PUT http://localhost:7070/api/list/updatebudget/1
+# PUT  http://localhost:7070/api/list/updatebudget/1
 # Content-Type: application/json
 
 # {
-#     "amount": 3000.00,
+#     "amount": 350.00,
 #     "listId": 1
     
     

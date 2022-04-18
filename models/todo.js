@@ -1,5 +1,3 @@
-// const { DataTypes } = require("sequelize/types");
-// const { sequelize } = require(".");
 
 //structuring the model
 module.exports = (sequelize, DataTypes) => {

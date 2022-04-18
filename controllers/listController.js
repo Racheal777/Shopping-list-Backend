@@ -84,25 +84,7 @@ const getOneList = async (req, res) => {
     
 }
 
-//getting one list
-//not done
-const getListCategory = async (req, res) => {
-    try {
 
-        let category = req.body.category
-        const categoryList = await List.findAll({
-            attributes : []
-        })
-        
-    res.status(201).json({ categoryList })
-    console.log("Category lIST", JSON.stringify(categoryList, null, 2))
-
-    } catch (error) {
-        console.log(error)
-        
-    }
-    
-}
 
 
 //deleting a list
@@ -180,7 +162,6 @@ const updateBudget = async (req, res) => {
 
 module.exports = {
     saveList,
-    getListCategory,
     getLists,
     getOneList,
     updateLists,

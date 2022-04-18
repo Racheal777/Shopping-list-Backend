@@ -1,33 +1,37 @@
 const express = require('express')
 const listController = require('../controllers/listController')
+const {
+     saveList, getLists, getOneList, 
+     updateLists, updateBudget, deleteList,
+     getBudget, saveBudget
+    } = listController
 
 const router = express.Router()
 
 //post request of the list
-router.post('/savelist', listController.saveList)
+router.post('/savelist', saveList)
 
 //get all lists
-router.get('/getlist', listController.getLists)
+router.get('/getlist', getLists)
 
 //get one list
-router.get('/getonelist/:id', listController.getOneList)
+router.get('/getonelist/:id', getOneList)
 
 //update a list
-router.put('/updatelist/:id', listController.updateLists)
+router.put('/updatelist/:id', updateLists)
 
 //delete a list
-router.delete('/deletelist/:id', listController.deleteList)
+router.delete('/deletelist/:id', deleteList)
 
-//get list by category
-router.get('/category/:id', listController.getListCategory)
+
 
 //budget route
 
-router.post('/addbudget', listController.saveBudget)
+router.post('/addbudget', saveBudget)
 
-router.put('/updatebudget/:id', listController.updateBudget)
+router.put('/updatebudget/:id', updateBudget)
 
-router.get('/getbudget/:id', listController.getBudget)
+router.get('/getbudget/:id', getBudget)
 
 
 module.exports = router
