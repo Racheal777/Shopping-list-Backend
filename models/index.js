@@ -3,8 +3,6 @@ const dbConfig = require('../config/db.config')
 
 const {Sequelize, DataTypes} = require('sequelize')
 
-
-
 //setting up the connection
 
 const sequelize = new Sequelize(
@@ -41,15 +39,8 @@ db.sequelize = sequelize
 db.users = require('./users') (sequelize, DataTypes)
 db.lists = require('./todo') (sequelize, DataTypes)
 db.budgets = require('./budget') (sequelize, DataTypes)
+db.roles = require('./role') (sequelize, DataTypes)
 
-
-//syncing it so it will keep previous data
-//force of sync is false so you dont loose your data if something happens
-db.sequelize.sync({force: false}).then(() => {
-    console.log('yes re-sync is done')
-}).catch((err) => {
-    console.log(err)
-})
 
 //establishing relationships
 //We use hasMany() to help one User have many lists, 
@@ -57,23 +48,43 @@ db.sequelize.sync({force: false}).then(() => {
 
 db.users.hasMany(db.lists,{
     as: "list",
-    foreignKey: "users_id"
+    foreignKey: "userId"
 })
 
 db.lists.belongsTo(db.users, {
     as:  "user",
-    foreignKey: "users_id"
+    foreignKey: "userId"
 })
 
-db.lists.hasOne(db.budgets, {
+db.users.hasOne(db.budgets, {
     as: "budget",
-    foreignKey: "listId"
+    foreignKey: "userId"
 })
 
-db.budgets.belongsTo(db.lists, {
-    as: "list",
-    foreignKey: "listId"
+db.budgets.belongsTo(db.users, {
+    as: "user",
+    foreignKey: "userId"
 })
+
+//indicating the relationship of many to many between user and role
+//With through, foreignKey, otherKey, we’re gonna have a new table user_roles
+// as connection between users and roles table via their primary key as foreign keys.
+
+db.roles.belongsToMany(db.users, {
+    through: "user_role",
+    foreignKey: "roleId",
+    otherKey: "userId"
+})
+
+
+db.users.belongsToMany(db.roles, {
+    through: "user_role",
+    foreignKey: "userId",
+    otherKey: "roleId"
+})
+
+//declaring the roles a user can have
+db.ROLES = ["user", "admin"]
 
 
 module.exports = db

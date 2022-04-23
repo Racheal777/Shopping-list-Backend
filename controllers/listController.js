@@ -15,7 +15,7 @@ try {
         list: req.body.list,
         price: req.body.price,
         quantity: req.body.quantity,
-        status: req.body.status ? req.body.status : "Pending"
+        status:  "Pending"
     }
     const list = await List.create( data )
     res.status(201).json({ list })
@@ -32,9 +32,7 @@ try {
 const getLists = async (req, res) => {
     try {
       
-        const allLists = await List.findAll({
-            include: ['budget']
-        })
+        const allLists = await List.findAll({})
     res.status(201).json({ allLists })
     console.log("ALLlIST", JSON.stringify(allLists, null, 2))
 
@@ -49,16 +47,17 @@ const getLists = async (req, res) => {
 const updateLists = async (req, res) => {
     try {
 
-        let info = {
-            status: 'Done'
-        }
+        const { status } = req.body;
+            const data = {
+                status,
+            };
       
         let id = req.params.id
-        const updatedLists = await List.update(info, {where: { id : id }})
+        const updatedLists = await List.update(data, {where: { id : id }})
     res.status(201).json({ updatedLists })
 
     console.log("UpdatedlIST", JSON.stringify(updatedLists, null, 2))
-
+        console.log(data)
     } catch (error) {
         console.log(error)
         
@@ -108,10 +107,14 @@ const deleteList = async (req, res) => {
 //budget adding
 const saveBudget = async ( req, res ) => {
     try {
-        let data = req.body
-        const newBudget = await Budget.create(data)
+        let info = {
+            budget : req.body.budget,
+            userId: req.body.userId
+        }
+        
+        const newBudget = await Budget.create(info)
         res.status(201).json({ newBudget })
-        console.log(data)
+        console.log(info)
         console.log("saveBudget", JSON.stringify( newBudget, null, 2 ))
     
     } catch (error) {
@@ -140,12 +143,13 @@ const saveBudget = async ( req, res ) => {
 const updateBudget = async (req, res) => {
     try {
 
-        let info = {
-            amount: req.body.amount,
-        }
+        const { budget } = req.body;
+            const data = {
+                budget,
+            };
       
         let id = req.params.id
-        const updatedBudget = await Budget.update(info, {where: { id : id }})
+        const updatedBudget = await Budget.update(data, {where: { id : id }})
     res.status(201).json({ updatedBudget })
 
     console.log("Updated Budget", JSON.stringify(updatedBudget, null, 2))

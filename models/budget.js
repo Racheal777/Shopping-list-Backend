@@ -3,9 +3,9 @@
 module.exports = (sequelize, DataTypes) => {
     const Budget = sequelize.define('budget', {
         
-        amount: {
+        budget: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            // allowNull: false
         },
 
         
