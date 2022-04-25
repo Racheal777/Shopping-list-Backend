@@ -39,7 +39,7 @@ db.sequelize = sequelize
 db.users = require('./users') (sequelize, DataTypes)
 db.lists = require('./todo') (sequelize, DataTypes)
 db.budgets = require('./budget') (sequelize, DataTypes)
-db.roles = require('./role') (sequelize, DataTypes)
+db.role = require('./role') (sequelize, DataTypes)
 
 
 //establishing relationships
@@ -70,21 +70,21 @@ db.budgets.belongsTo(db.users, {
 //With through, foreignKey, otherKey, we’re gonna have a new table user_roles
 // as connection between users and roles table via their primary key as foreign keys.
 
-db.roles.belongsToMany(db.users, {
-    through: "user_role",
+db.role.belongsToMany(db.users, {
+    through: "user_roles",
     foreignKey: "roleId",
     otherKey: "userId"
 })
 
 
-db.users.belongsToMany(db.roles, {
-    through: "user_role",
+db.users.belongsToMany(db.role, {
+    through: "user_roles",
     foreignKey: "userId",
     otherKey: "roleId"
 })
 
 //declaring the roles a user can have
-db.ROLES = ["user", "admin"]
+db.ROLES = ["user", "admin", "moderator"]
 
 
 module.exports = db

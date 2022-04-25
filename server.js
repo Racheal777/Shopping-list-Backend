@@ -2,11 +2,13 @@
 
 const express = require('express')
 const cors = require('cors')
-const dotenv = require('dotenv').config()
+
 const { Sequelize } = require('sequelize')
+const dotenv = require('dotenv').config()
 const listRoute = require('./routes/listRoute')
+const userRoute = require('./routes/userRoute')
 const db = require('./models/index')
-const Role = db.roles
+const Role = db.role
 
 const PORT = process.env.PORT || 7070
 
@@ -16,6 +18,7 @@ const app = express()
 
 let corsOptions = {
     origin: "http://localhost:3000",
+    credentials: true,
     methods: "GET, POST, OPTIONS, PUT, DELETE",
 }
 //middleware
@@ -25,31 +28,39 @@ app.use( cors(corsOptions) )
 
 //routes
 app.use('/api/list', listRoute)
+app.use('/user', userRoute)
 
 //syncing it so it will keep previous data
 //force of sync is false so you dont loose your data if something happens
-db.sequelize.sync({force: false}).then(() => {
+db.sequelize.sync({force: true}).then(() => {
     console.log('yes re-sync is done')
-    // initial()
+     initial()
 }).catch((err) => {
     console.log(err)
 })
 
 //instantiating the roles with their id
 //initial() function helps us to create 3 rows in database.
-// function initial() {
+function initial() {
    
-//     Role.create({
-//         id: 2,
-//         name: "user"
-//     })
+    Role.create({
+        id: 1,
+        name: "user"
+    })
 
-//     Role.create({
-//         id: 3,
-//         name: "admin"
-//     })
+    Role.create({
+        id: 2,
+        name: "moderator"
+    })
+
+    Role.create({
+        id: 3,
+        name: "admin"
+    })
     
-// }
+}
+
+
 
 //listening to the server
 app.listen(PORT, ()=> console.log(`server is running on ${PORT}`))

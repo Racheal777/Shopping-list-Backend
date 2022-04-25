@@ -7,6 +7,8 @@ const db = require('../models')
 //assigning a variable to the db list from the index file
 const List = db.lists
 const Budget = db.budgets
+const user = db.users
+
 
 //saving a list to the database
 const saveList = async ( req, res ) => {
@@ -15,7 +17,8 @@ try {
         list: req.body.list,
         price: req.body.price,
         quantity: req.body.quantity,
-        status:  "Pending"
+        status:  "Pending",
+        userId: req.body.userId
     }
     const list = await List.create( data )
     res.status(201).json({ list })

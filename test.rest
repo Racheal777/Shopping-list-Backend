@@ -1,23 +1,44 @@
-# POST http://localhost:7070/api/list/savelist
+# POST http://localhost:7070/user/signup
 # Content-Type: application/json
 
 # {
-#     "list": "Frytol",
-#     "price": 99.00,
-#     "quantity": 1
+#     "firstName": "Racheal",
+#     "lastName": "Kuranchie",
+#     "email": "racheal@gmail.com",
+#     "userName": "rich20",
+#     "password": "racheal2023"
     
 # }
 
- Get http://localhost:7070/api/list/getbudget/1
-
-# DELETE   http://localhost:7070/api/list/deletelist/1
-
-# PUT  http://localhost:7070/api/list/updatebudget/1
+# POST http://localhost:7070/user/login
 # Content-Type: application/json
 
 # {
-#     "amount": 350.00,
-#     "listId": 1
+#     "email": "racheal@gmail.com",
+#     "password": "racheal2023" 
+# }
+
+POST http://localhost:7070/api/list/savelist
+Content-Type: application/json
+
+{
+    "list": "bag",
+    "price": 100.00, 
+    "quantity": 3,
+    "userId": 2
+    
+}
+
+#   Get http://localhost:7070/user/logout
+
+# DELETE   http://localhost:7070/api/list/deletelist/1
+
+# POST  http://localhost:7070/api/list/addbudget
+# Content-Type: application/json
+
+# {
+#     "budget": 1000.00,
+#     "userId": 2
     
     
 # }
