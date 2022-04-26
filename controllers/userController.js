@@ -39,13 +39,20 @@ const signup = async (req, res) => {
         }else{
             //user role = 1
             user.setRoles([ 1 ]).then(() => {
+                let token = jwt.sign({ id : user.id },config.secret, {
+                    expiresIn: 1 * 24 * 60 * 60 * 1000
+                })
+                res.cookie('jwt', token, {maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly:true})
+
                 res.send({ message: "user registered" })
                 console.log("registered user", JSON.stringify(user, null, 2))
+                console.log(token)
             })
         }
         
     }).catch((err) => {
         res.status(500).send({ message: err.message})
+        console.log(err)
     })
 }
 
@@ -92,16 +99,19 @@ const login = (req, res) => {
         let token = jwt.sign({ id : user.id },config.secret, {
             expiresIn: 1 * 24 * 60 * 60 * 1000
         })
+        res.cookie('jwt', token, {maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly:true})
         console.log(token)
         res.status(200).send({
             id: user.id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            username: user.username,
-            email: user.email,
-            password: user.password,
-            accessToken: token
+            firstName: user.firstName
+            
         })
+        // console.log(firstName: user.firstName,
+        //     lastName: user.lastName,
+        //     username: user.username,
+        //     email: user.email,
+        //     password: user.password,
+        //     accessToken: token)
     }).catch((err) => {
         res.status(500).send(err.json)
     })
@@ -110,12 +120,10 @@ const login = (req, res) => {
 
 const logout = (req, res) => {
     try {
-        let id = req.params.id
-        let token = jwt.sign({id}, config.secret, {
-            expiresIn:  0
-        }) 
+        
+        res.cookie('jwt','', {maxAge: 0 })
         res.status(200).send("logout successfully") 
-        console.log(token)  
+        // console.log(token)  
     } catch (error) {
        console.log(error) 
     }

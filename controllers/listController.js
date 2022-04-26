@@ -74,7 +74,7 @@ const getOneList = async (req, res) => {
     try {
 
         let id = req.params.id
-        const oneList = await List.findOne({where: {id : id}})
+        const oneList = await List.findOne({})
 
     res.status(201).json({ oneList })
     console.log("ALLlIST", JSON.stringify(oneList, null, 2))

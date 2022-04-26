@@ -9,7 +9,7 @@ const {
 const router = express.Router()
 
 //post request of the list
-router.post('/savelist', saveList)
+router.post('/savelist/:id', saveList)
 
 //get all lists
 router.get('/getlist', getLists)
@@ -27,7 +27,7 @@ router.delete('/deletelist/:id', deleteList)
 
 //budget route
 
-router.post('/addbudget', saveBudget)
+router.post('/addbudget/:id', saveBudget)
 
 router.put('/updatebudget/:id', updateBudget)
 

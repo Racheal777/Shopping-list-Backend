@@ -1,14 +1,13 @@
-# POST http://localhost:7070/user/signup
-# Content-Type: application/json
+POST http://localhost:7070/user/signup
+Content-Type: application/json
 
-# {
-#     "firstName": "Racheal",
-#     "lastName": "Kuranchie",
-#     "email": "racheal@gmail.com",
-#     "userName": "rich20",
-#     "password": "racheal2023"
-    
-# }
+{
+    "firstName": "Racheal",
+    "lastName": "Kuranchie",
+    "email": "racheal@gmail.com",
+    "userName": "rich20",
+    "password": "racheal2023"   
+}
 
 # POST http://localhost:7070/user/login
 # Content-Type: application/json

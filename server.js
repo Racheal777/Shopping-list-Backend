@@ -2,7 +2,7 @@
 
 const express = require('express')
 const cors = require('cors')
-
+const cookieParser = require('cookie-parser')
 const { Sequelize } = require('sequelize')
 const dotenv = require('dotenv').config()
 const listRoute = require('./routes/listRoute')
@@ -25,6 +25,7 @@ let corsOptions = {
 app.use(express.json())
 app.use(express.urlencoded( { extended: true } ))
 app.use( cors(corsOptions) )
+app.use(cookieParser())
 
 //routes
 app.use('/api/list', listRoute)

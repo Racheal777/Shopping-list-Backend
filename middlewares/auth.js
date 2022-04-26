@@ -22,7 +22,7 @@ const saveUser = async (req, res, next) => {
             }
         }).then((user) => {
             if(user){
-                res.status(400).json({message: "email already in use!"})
+                res.status(400).json({message: "Authentication failed!"})
                 return
             }
             next()
