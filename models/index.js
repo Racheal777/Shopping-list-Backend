@@ -70,21 +70,21 @@ db.budgets.belongsTo(db.users, {
 //With through, foreignKey, otherKey, we’re gonna have a new table user_roles
 // as connection between users and roles table via their primary key as foreign keys.
 
-db.role.belongsToMany(db.users, {
-    through: "user_roles",
-    foreignKey: "roleId",
-    otherKey: "userId"
-})
+// db.role.belongsToMany(db.users, {
+//     through: "user_roles",
+//     foreignKey: "roleId",
+//     otherKey: "userId"
+// })
 
 
-db.users.belongsToMany(db.role, {
-    through: "user_roles",
-    foreignKey: "userId",
-    otherKey: "roleId"
-})
+// db.users.belongsToMany(db.role, {
+//     through: "user_roles",
+//     foreignKey: "userId",
+//     otherKey: "roleId"
+// })
 
 //declaring the roles a user can have
-db.ROLES = ["user", "admin", "moderator"]
+// db.ROLES = ["user", "admin", "moderator"]
 
 
 module.exports = db

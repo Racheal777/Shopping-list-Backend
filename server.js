@@ -33,33 +33,33 @@ app.use('/user', userRoute)
 
 //syncing it so it will keep previous data
 //force of sync is false so you dont loose your data if something happens
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
     console.log('yes re-sync is done')
-     initial()
+    //  initial()
 }).catch((err) => {
     console.log(err)
 })
 
 //instantiating the roles with their id
 //initial() function helps us to create 3 rows in database.
-function initial() {
+// function initial() {
    
-    Role.create({
-        id: 1,
-        name: "user"
-    })
+//     Role.create({
+//         id: 1,
+//         name: "user"
+//     })
 
-    Role.create({
-        id: 2,
-        name: "moderator"
-    })
+//     Role.create({
+//         id: 2,
+//         name: "moderator"
+//     })
 
-    Role.create({
-        id: 3,
-        name: "admin"
-    })
+//     Role.create({
+//         id: 3,
+//         name: "admin"
+//     })
     
-}
+// }
 
 
 

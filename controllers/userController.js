@@ -23,31 +23,20 @@ const signup = async (req, res) => {
         password: bcrypt.hashSync(req.body.password, 10)
         
      }).then(user => {
-        if(req.body.roles){
-            Role.findAll({
-                where: {
-                    name: {
-                        [Op.or]: req.body.roles
-                    }
-                }
-            }).then(roles => {
-               user.setRoles(roles).then(() => {
-                   res.send({message: "user not registered"})
-                   
-               }) 
+        if(user){
+            let token = jwt.sign({ id : user.id },config.secret, {
+                expiresIn: 1 * 24 * 60 * 60 * 1000
             })
-        }else{
-            //user role = 1
-            user.setRoles([ 1 ]).then(() => {
-                let token = jwt.sign({ id : user.id },config.secret, {
-                    expiresIn: 1 * 24 * 60 * 60 * 1000
-                })
-                res.cookie('jwt', token, {maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly:true})
+            res.cookie('jwt', token, {maxAge: 1 * 24 * 60 * 60 * 1000, httpOnly:true})
 
-                res.send({ message: "user registered" })
-                console.log("registered user", JSON.stringify(user, null, 2))
-                console.log(token)
-            })
+            res.send({ message: "user registered" })
+            console.log("registered user", JSON.stringify(user, null, 2))
+            console.log(token)
+        }
+
+       else{
+            //user role = 1
+            res.send({message: "user not registered"})
         }
         
     }).catch((err) => {

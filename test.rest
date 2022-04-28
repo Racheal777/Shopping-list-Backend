@@ -4,8 +4,8 @@ Content-Type: application/json
 {
     "firstName": "Racheal",
     "lastName": "Kuranchie",
-    "email": "racheal@gmail.com",
-    "userName": "rich20",
+    "email": "racheal2@gmail.com",
+    "userName": "richeal20",
     "password": "racheal2023"   
 }
 
@@ -17,27 +17,24 @@ Content-Type: application/json
 #     "password": "racheal2023" 
 # }
 
-POST http://localhost:7070/api/list/savelist
-Content-Type: application/json
+# POST http://localhost:7070/api/list/savelist
+# Content-Type: application/json
 
-{
-    "list": "bag",
-    "price": 100.00, 
-    "quantity": 3,
-    "userId": 2
+# {
+#     "list": "bag",
+#     "price": 100.00, 
+#     "quantity": 3,
+#     "userId": 2
     
-}
+# }
 
 #   Get http://localhost:7070/user/logout
 
 # DELETE   http://localhost:7070/api/list/deletelist/1
 
-# POST  http://localhost:7070/api/list/addbudget
+# PUT  http://localhost:7070/api/list/updatebudget/1
 # Content-Type: application/json
 
 # {
-#     "budget": 1000.00,
-#     "userId": 2
-    
-    
+#     "budget": 1000.00   
 # }
