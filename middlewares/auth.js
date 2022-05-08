@@ -11,7 +11,7 @@ const saveUser = async (req, res, next) => {
         }
     }).then((user) => {
         if(user){
-            res.status(400).json({message: "username is already in use!"})
+            res.status(409).json({message: "username is already in use!"})
             return
         }
 
